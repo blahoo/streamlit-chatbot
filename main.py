@@ -18,7 +18,6 @@ new_title = """
 <p class="title">Streamlit-Chatbot</p>
 """
 st.markdown(new_title, unsafe_allow_html=True)
-st.divider()
 
 # optional pre prompt to shorten response size
 pre_prompt = "limit response to 100 words: "
