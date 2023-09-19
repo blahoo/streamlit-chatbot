@@ -80,7 +80,7 @@ for message in context.get():
         content = content[pre_prompt_len:]
     
     with st.chat_message(message["role"]):    
-        st.markdown(message["content"])
+        st.markdown(content)
 
 
 if prompt := st.chat_input("Type here"):
