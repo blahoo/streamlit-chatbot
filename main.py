@@ -21,6 +21,7 @@ st.markdown(new_title, unsafe_allow_html=True)
 
 # initialize session state
 if "list_context" not in st.session_state:
+    print("---- session initialized -----")
     st.session_state["list_context"] = []
     st.session_state.list_context.append({"role": "assistant", "content": "Hello World 👋"})
 
