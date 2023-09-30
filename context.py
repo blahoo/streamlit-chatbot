@@ -6,12 +6,12 @@ print("---- setup initialized -----")
 
 if "list_context" not in st.session_state:
     st.session_state["list_context"] = []
+    st.session_state.list_context.append({"role": "assistant", "content": "Hello World 👋"})
 
 max_context_length = st.secrets["max_context"]
 
 openai.api_key = getOpenAiKey()
 
-st.session_state.list_context.append({"role": "assistant", "content": "Hello World 👋"})
 
 def add(role, message):
     st.session_state.list_context.append({"role": role, "content": message})
