@@ -19,15 +19,16 @@ new_title = """
 """
 st.markdown(new_title, unsafe_allow_html=True)
 
-# optional pre prompt to shorten response size
-pre_prompt = "limit response to 100 words: "
-pre_prompt_len = len(pre_prompt)
+# initialize session state
+if "list_context" not in st.session_state:
+    st.session_state["list_context"] = []
+    st.session_state.list_context.append({"role": "assistant", "content": "Hello World 👋"})
 
 
 def chatgpt(prompt):
 
     # adds the prompt to a conversation history list for context
-    context.add("user", (pre_prompt + prompt))
+    context.add("user", (context.pre_prompt + prompt))
     
     # outputs the input to the chat display
     with st.chat_message("user"):
@@ -77,7 +78,7 @@ for message in context.get():
     content = message["content"]
 
     if role == "user":
-        content = content[pre_prompt_len:]
+        content = content[context.pre_prompt_len:]
     
     with st.chat_message(message["role"]):    
         st.markdown(content)
