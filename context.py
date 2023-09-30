@@ -2,9 +2,11 @@ import openai
 from key import getOpenAiKey
 import streamlit as st
 
-st.cache_data.clear()
+print("---- setup initialized -----")
+
 if "list_context" not in st.session_state:
     st.session_state["list_context"] = []
+
 max_context_length = st.secrets["max_context"]
 
 openai.api_key = getOpenAiKey()
@@ -18,3 +20,9 @@ def add(role, message):
 
 def get():
     return st.session_state.list_context
+
+def reset():
+    st.session_state.list_context = []
+    st.session_state.list_context.append({"role": "assistant", "content": "Hello World 👋"})
+
+print("----- setup complete -----")
