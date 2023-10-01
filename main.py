@@ -88,6 +88,6 @@ for message in context.get():
 if prompt := st.chat_input("Input prompt, or \"reset\""):
     if prompt == "reset":
         context.reset()
-        st.rerun()
+        st.write()
     else:
         chatgpt(prompt)
