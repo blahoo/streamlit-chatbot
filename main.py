@@ -2,30 +2,7 @@ import streamlit as st
 import openai
 import context
 
-# st.title("Streamlit-Chatbot")
-
-new_title = """
-<style>
-.title {
-    font-size: 45px !important;
-    font-family: sans-serif;
-    font-weight: 600;
-    text-align: center;
-    color: #fef8ef;
-    background-image: linear-gradient(to left, #ff6c6c, #f0a830);
-}
-</style>
-<p class="title">Streamlit-Chatbot</p>
-"""
-st.markdown(new_title, unsafe_allow_html=True)
-
-# initialize session state
-if "list_context" not in st.session_state:
-    print("---- session initialized -----")
-    st.session_state["list_context"] = []
-    st.session_state.list_context.append({"role": "assistant", "content": "Hello World 👋"})
-
-
+# prompt method
 def chatgpt(prompt):
 
     # adds the prompt to a conversation history list for context
@@ -68,8 +45,30 @@ def chatgpt(prompt):
 
     print(context.get())
 
-
     return full_response
+
+# initialize session state
+if "list_context" not in st.session_state:
+    print("---- session initialized -----")
+    st.session_state["list_context"] = []
+    st.session_state.list_context.append({"role": "assistant", "content": "Hello World 👋"})
+
+
+# st.title("Streamlit-Chatbot") but fancy
+new_title = """
+<style>
+.title {
+    font-size: 45px !important;
+    font-family: sans-serif;
+    font-weight: 600;
+    text-align: center;
+    color: #fef8ef;
+    background-image: linear-gradient(to left, #ff6c6c, #f0a830);
+}
+</style>
+<p class="title">Streamlit-Chatbot</p>
+"""
+st.markdown(new_title, unsafe_allow_html=True)
 
 
 for message in context.get():
@@ -88,6 +87,5 @@ for message in context.get():
 if prompt := st.chat_input("Input prompt, or \"reset\""):
     if prompt == "reset":
         context.reset()
-        st.write()
     else:
         chatgpt(prompt)
